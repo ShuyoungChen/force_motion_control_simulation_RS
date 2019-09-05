@@ -68,7 +68,9 @@ def main():
     time.sleep(0.5)	
     print '--------start force control--------'
 	
-    while True:
+    pose = rox.fwdkin(abb_robot, np.deg2rad(state.joint_angles))
+	
+    while pose.p[0] < 2:
         # receive EGM feedback
         res, state = egm.receive_from_robot(.1)
         
@@ -102,6 +104,6 @@ def main():
         q_c = np.deg2rad(state.joint_angles) + joints_vel*delta_t
 		
         egm.send_to_robot(q_c)
-        	
+   
 if __name__ == '__main__':
     main()
