@@ -7,13 +7,13 @@ MODULE EGM_test_UDP
     CONST egm_minmax egm_minmax_rot1:=[-2,2];! in degees
     CONST egm_minmax egm_minmax_joint1:=[-0.5,0.5];
     
-    CONST jointtarget p20:=[[0, 0, 0, 0, 90, 0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST jointtarget p20:=[[6, 8, 34, 25, 10, 25],[9E9,9E9,9E9,9E9,9E9,9E9]];
     
     PROC main()
         EGMReset egmID1;
         EGMGetId egmID1;     
         EGMStop egmID1, EGM_STOP_HOLD, \RampOutTime := 100;
-        MoveAbsJ p20,v200,fine,tool0;
+        MoveAbsJ p20,v100,fine,tool0;
         WaitTime 1;
         testuc_UDP; 
     ENDPROC
