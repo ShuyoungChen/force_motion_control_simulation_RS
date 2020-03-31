@@ -164,11 +164,11 @@ def first_half(input, num_iter):
         print F
         # solve for joint velocity
         # Jacobian inverse
-        #J = rox.robotjacobian(abb_robot, q_new)		
-        #joints_vel = np.linalg.pinv(J).dot(spatial_velocity_command)
+        J = rox.robotjacobian(abb_robot, q_new)		
+        joints_vel = np.linalg.pinv(J).dot(spatial_velocity_command)
 
         # QP
-        joints_vel = quadprog.compute_joint_vel_cmd_qp(q_new, spatial_velocity_command)
+        #joints_vel = quadprog.compute_joint_vel_cmd_qp(q_new, spatial_velocity_command)
         
         # commanded joint position setpoint to EGM
         q_c = q_new + joints_vel*delta_t
@@ -297,16 +297,11 @@ def second_half(x, out_pre, num_iter):
         print F
         # solve for joint velocity
         # Jacobian inverse
-        #J = rox.robotjacobian(abb_robot, q_new)		
-        #joints_vel = np.linalg.pinv(J).dot(spatial_velocity_command)
-		
-        # emergency stop if force too large
-        if abs(F) > 2000:
-            spatial_velocity_command = np.array([0, 0, 0, 0, 0, 0])
-            print "force too large, stop..."
-
+        J = rox.robotjacobian(abb_robot, q_new)		
+        joints_vel = np.linalg.pinv(J).dot(spatial_velocity_command)
+	
         # QP
-        joints_vel = quadprog.compute_joint_vel_cmd_qp(q_new, spatial_velocity_command)
+        #joints_vel = quadprog.compute_joint_vel_cmd_qp(q_new, spatial_velocity_command)
 			
         # commanded joint position setpoint to EGM
         q_c = q_new + joints_vel*delta_t
