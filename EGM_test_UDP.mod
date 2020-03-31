@@ -7,7 +7,7 @@ MODULE EGM_test_UDP
     CONST egm_minmax egm_minmax_rot1:=[-2,2];! in degees
     CONST egm_minmax egm_minmax_joint1:=[-0.5,0.5];
     
-    CONST jointtarget p20:=[[6, 8, 34, 25, 10, 25],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST jointtarget p20:=[[-91.08,2.54,38.18,0.0,49.27,-1.07],[9E9,9E9,9E9,9E9,9E9,9E9]];
     
     PROC main()
         EGMReset egmID1;
